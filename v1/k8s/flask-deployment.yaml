@@ -16,6 +16,17 @@ spec:
     spec:
       containers:
       - name: flask
-        image: hjdo/flask-helloworld:latest
+        image: jamonation/flask-helloworld:v1
         ports:
         - containerPort: 5000
+        env:
+          - name: REDIS_HOST
+            valueFrom:
+              configMapKeyRef:
+                name: redis-config
+                key: host
+          - name: REDIS_PORT
+            valueFrom:
+              configMapKeyRef:
+                name: redis-config
+                key: port
